@@ -40,49 +40,37 @@ const teamMembers = [
 //select the DOM node
 const divList= document.getElementById("list");
 
-//Loop over the array of objects using a for loop
-for (let i=0; i< teamMembers.length; i++){
+//chiamo la funzione "RENDERTEAMS"
+renderTeams(teamMembers, divList);
 
-  //select the element from the array using i as index of the item
-  const member=teamMembers[i];
-  //Access the object properties
-  console.log(member);
-  /* 
-  console.log(member.name);
-  console.log(member["img"]);
-  */
 
-  //Created a list item using a DOM api
-  const divEl=document.createElement("div");
-  divEl.classList.add("col");
+const formEl= document.querySelector("form");
 
-  markupString= getMarkup(member);
+
+formEl.addEventListener("submit", function(e) {
+
+  e.preventDefault()
   
-  divEl.innerHTML=markupString;
-  console.log(divEl);
-  
-  //append the list item to the ul
-  divList.appendChild(divEl);
-  
-}
+  //svuoto la lista html
+  divList.innerHTML="";
 
+  const newMember= {
+  name: document.getElementById("name").value,
+  role: document.getElementById("role").value,
+  email: document.getElementById("email").value,
+  img: "img/"+document.getElementById("image").value
+   }
 
-/* 
-function getMarkup(member){
-  //Destructuring
-  const {name, role, email, img}= member;
+   //aggiorno l'array di oggetti
+   teamMembers.unshift(newMember);
 
-  const markupString=`
-   <div class="card">
-            <img src="./assets/${img}" alt="">
-            <div class="card-body">
-                <h2>${name}</h2>
-                <div>${role}</div>
-                <div>${email}</div>
-            </div>
-        </div>
-  ` 
-  return markupString;
-} 
-*/
+   //chiamo la funzione "RENDERTEAMS"
+   renderTeams(teamMembers, divList);
+
+   /* console.log(teamMembers); */
+   
+   //reset del form
+   formEl.reset();
+
+})
 
