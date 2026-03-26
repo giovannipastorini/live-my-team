@@ -42,15 +42,16 @@ const ulEl= document.getElementById("list");
 
 //Loop over the array of objects using a for loop
 for (let i=0; i< teamMembers.length; i++){
-  
+
   //select the element from the array using i as index of the item
   const member=teamMembers[i];
+  //Access the object properties
   console.log(member);
   console.log(member.name);
   console.log(member["img"]);
   
   
-
+  //Created a list item using a DOM api
   const liEl=document.createElement("li");
 
   /* liEl.innertext=member.name; */
@@ -59,6 +60,7 @@ for (let i=0; i< teamMembers.length; i++){
 
   console.log(liEl);
   
+  //append the list item to the ul
   ulEl.appendChild(liEl);
   
 }
