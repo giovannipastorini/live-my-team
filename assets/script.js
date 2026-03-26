@@ -38,7 +38,7 @@ const teamMembers = [
 ];
 
 //select the DOM node
-const ulEl= document.getElementById("list");
+const divList= document.getElementById("list");
 
 //Loop over the array of objects using a for loop
 for (let i=0; i< teamMembers.length; i++){
@@ -47,21 +47,32 @@ for (let i=0; i< teamMembers.length; i++){
   const member=teamMembers[i];
   //Access the object properties
   console.log(member);
+  /* 
   console.log(member.name);
   console.log(member["img"]);
+   */
   
-  
+  //Destructuring
+  const {name, role, email, img}= member;
+
   //Created a list item using a DOM api
-  const liEl=document.createElement("li");
+  const divEl=document.createElement("div");
+  divEl.classList.add("col");
 
-  /* liEl.innertext=member.name; */
-  /* liEl.textContent=member.name;  */
-   liEl.innerHTML=member.name;
-
-  console.log(liEl);
+  const markupString=`
+   <div class="card">
+            <img src="./assets/${img}" alt="">
+            <div class="card-body">
+                <h2>${name}</h2>
+                <div>${role}</div>
+                <div>${email}</div>
+            </div>
+        </div>
+  `
+  divEl.innerHTML=markupString;
   
   //append the list item to the ul
-  ulEl.appendChild(liEl);
+  divList.appendChild(divEl);
   
 }
 
