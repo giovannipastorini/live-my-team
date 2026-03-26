@@ -53,6 +53,7 @@ for (let i=0; i< teamMembers.length; i++){
    */
   
   //Destructuring
+  /* 
   const {name, role, email, img}= member;
 
   //Created a list item using a DOM api
@@ -68,11 +69,37 @@ for (let i=0; i< teamMembers.length; i++){
                 <div>${email}</div>
             </div>
         </div>
-  `
+  ` 
+  */
+
+  //Created a list item using a DOM api
+  const divEl=document.createElement("div");
+  divEl.classList.add("col");
+
+  markupString= getMarkup(member);
+  
   divEl.innerHTML=markupString;
+  console.log(divEl);
   
   //append the list item to the ul
   divList.appendChild(divEl);
   
+}
+
+
+function getMarkup(member){
+  const {name, role, email, img}= member;
+  
+  const markupString=`
+   <div class="card">
+            <img src="./assets/${img}" alt="">
+            <div class="card-body">
+                <h2>${name}</h2>
+                <div>${role}</div>
+                <div>${email}</div>
+            </div>
+        </div>
+  ` 
+  return markupString;
 }
 
